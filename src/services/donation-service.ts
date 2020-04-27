@@ -1,15 +1,17 @@
 import { inject } from 'aurelia-framework';
 import { Candidate, Donation } from './donation-types';
 import { HttpClient } from 'aurelia-http-client';
+import { EventAggregator } from 'aurelia-event-aggregator';
+import {TotalUpdate} from "./messages";
 
-@inject(HttpClient)
+@inject(HttpClient, EventAggregator)
 export class DonationService {
   candidates: Candidate[] = [];
   donations: Donation[] = [];
   paymentMethods = ['Cash', 'Paypal'];
   total = 0;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private ea: EventAggregator) {
     httpClient.configure(http => {
       http.withBaseUrl('http://localhost:8080');
     });
@@ -19,17 +21,18 @@ export class DonationService {
   async getCandidates() {
     const response = await this.httpClient.get('/api/candidates.json');
     this.candidates = await response.content;
-    console.log (this.candidates);
+    console.log(this.candidates);
   }
 
   async donate(amount: number, method: string, candidate: Candidate) {
     const donation = {
       amount: amount,
       method: method,
-      candidate : candidate
+      candidate: candidate
     };
     this.donations.push(donation);
     this.total = this.total + amount;
+    this.ea.publish(new TotalUpdate(this.total));
     console.log('Total so far ' + this.total);
   }
 }
