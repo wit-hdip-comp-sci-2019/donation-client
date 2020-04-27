@@ -14,6 +14,15 @@
         </div>
       </div>
     </div>
+    <h4 class="ui dividing header"> Select Candidate </h4>
+    <div class="grouped inline fields">
+      <div class="field" repeat.for="candidate of candidates">
+        <div class="ui radio checkbox">
+          <input type="radio" model.bind="candidate" checked.bind="selectedCandidate">
+          <label>${candidate.lastName}, ${candidate.firstName}</label>
+        </div>
+      </div>
+    </div>
     <button class="ui blue submit button">Donate</button>
   </form>
 </template>
