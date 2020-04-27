@@ -5,11 +5,13 @@
       <thead>
         <tr>
           <th>Amount</th>
+          <th>Payment Method</th>
         </tr>
       </thead>
       <tbody>
         <tr repeat.for="donation of donations">
-          <td> ${donation}</td>
+          <td> ${donation.amount}</td>
+          <td> ${donation.method}</td>
         </tr>
       </tbody>
     </table>

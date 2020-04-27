@@ -1,6 +1,7 @@
-import { bindable } from "aurelia-framework";
+import { bindable } from 'aurelia-framework';
+import { Donation } from '../../services/donation-types';
 
 export class DonationList {
   @bindable
-  donations: number[];
+  donations: Donation[];
 }
