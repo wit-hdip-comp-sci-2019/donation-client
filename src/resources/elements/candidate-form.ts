@@ -13,6 +13,7 @@ export class CandidateForm {
       firstName: this.firstName,
       lastName: this.lastName,
       office: this.office,
+      _id: ''
     };
     this.candidates.push(candidate);
     console.log(candidate);

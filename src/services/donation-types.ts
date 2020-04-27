@@ -2,6 +2,7 @@ export interface Candidate {
   firstName: string;
   lastName: string;
   office: string;
+  _id : string;
 }
 
 export interface Donation {
