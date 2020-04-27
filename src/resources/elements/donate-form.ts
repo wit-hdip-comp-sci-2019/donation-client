@@ -1,12 +1,17 @@
 import { bindable } from 'aurelia-framework';
+import { Donation } from '../../services/donation-types';
 
 export class DonateForm {
   amount = '0';
   @bindable
-  donations: number[] = [];
+  donations: Donation[] = [];
 
   makeDonation() {
-    this.donations.push(parseInt(this.amount));
+    const donation = {
+      amount: parseInt(this.amount),
+      method: 'cash',
+    };
+    this.donations.push(donation);
     console.log(this.donations);
   }
 }

@@ -3,3 +3,7 @@ export interface Candidate {
   lastName: string;
   office: string;
 }
+export interface Donation {
+  amount: number;
+  method: string;
+}
