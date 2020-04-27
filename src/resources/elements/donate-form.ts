@@ -14,11 +14,6 @@ export class DonateForm {
   selectedMethod = '';
   selectedCandidate : Candidate = null;
 
-  constructor() {
-    this.candidates.push({ firstName: 'Bart', lastName: 'Simpson', office: 'president' });
-    this.candidates.push({ firstName: 'Lisa', lastName: 'Simpson', office: 'president' });
-  }
-
   makeDonation() {
     const donation = {
       amount: parseInt(this.amount),
