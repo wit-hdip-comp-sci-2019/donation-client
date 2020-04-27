@@ -6,6 +6,7 @@
         <tr>
           <th>Amount</th>
           <th>Payment Method</th>
+          <th>Donor</th>
           <th>Candidate</th>
         </tr>
       </thead>
@@ -13,6 +14,7 @@
         <tr repeat.for="donation of donations">
           <td> ${donation.amount}</td>
           <td> ${donation.method}</td>
+          <td> ${donation.donor.lastName}, ${donation.donor.firstName}</td>
           <td> ${donation.candidate.lastName}, ${donation.candidate.firstName}</td>
         </tr>
       </tbody>
