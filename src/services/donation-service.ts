@@ -77,11 +77,21 @@ export class DonationService {
     this.candidates.push(newCandidate);
   }
 
-  signup(firstName: string, lastName: string, email: string, password: string) {
-    //this.changeRouter(PLATFORM.moduleName('app'))
+  async signup(firstName: string, lastName: string, email: string, password: string) {
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
+    };
+    const response = await this.httpClient.post('/api/users', user);
+    const newUser = await response.content;
+    this.users.set(newUser.email, newUser);
+    this.usersById.set(newUser._id, newUser);
+    this.changeRouter(PLATFORM.moduleName('app'))
     return false;
   }
-
+  
   async login(email: string, password: string) {
     const user = this.users.get(email);
     if (user && (user.password === password)) {
