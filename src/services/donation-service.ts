@@ -49,7 +49,8 @@ export class DonationService {
   }
 
   signup(firstName: string, lastName: string, email: string, password: string) {
-    this.changeRouter(PLATFORM.moduleName('app'))
+    //this.changeRouter(PLATFORM.moduleName('app'))
+    return false;
   }
 
   async login(email: string, password: string) {
