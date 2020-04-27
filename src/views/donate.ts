@@ -7,10 +7,12 @@ export class Donate {
   donations: Donation[];
   paymentMethods: string[];
   candidates: Candidate[];
+  total = 0;
 
   constructor(private ds: DonationService) {
     this.candidates = ds.candidates;
     this.donations = ds.donations;
     this.paymentMethods = ds.paymentMethods;
+    this.total = ds.total;
   }
 }
