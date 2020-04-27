@@ -43,6 +43,7 @@ export class DonationService {
       method: method,
       candidate: candidate
     };
+    const response = await this.httpClient.post('/api/candidates/' + candidate._id + '/donations', donation);
     this.donations.push(donation);
     this.total = this.total + amount;
     this.ea.publish(new TotalUpdate(this.total));
