@@ -16,21 +16,22 @@ export class DonationService {
 
   constructor(private httpClient: HttpClient, private ea: EventAggregator, private au: Aurelia, private router: Router) {
     httpClient.configure(http => {
-      http.withBaseUrl('http://localhost:8080');
+      http.withBaseUrl('http://localhost:3000');
     });
     this.getCandidates();
     this.getUsers();
   }
 
   async getCandidates() {
-    const response = await this.httpClient.get('/api/candidates.json');
+    const response = await this.httpClient.get('/api/candidates');
     this.candidates = await response.content;
     console.log(this.candidates);
   }
 
   async getUsers() {
-    const response = await this.httpClient.get('/api/users.json');
+    const response = await this.httpClient.get('/api/users');
     const users = await response.content;
+    console.log(users);
     users.forEach(user => {
       this.users.set(user.email, user);
     });
