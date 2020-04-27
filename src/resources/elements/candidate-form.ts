@@ -1,21 +1,18 @@
-import { bindable } from "aurelia-framework";
-import { Candidate } from "../../services/donation-types";
+import { inject } from 'aurelia-framework';
+import { bindable } from 'aurelia-framework';
+import { Candidate } from '../../services/donation-types';
+import { DonationService } from '../../services/donation-service';
 
+@inject(DonationService)
 export class CandidateForm {
   firstName: string;
   lastName: string;
   office: string;
-  @bindable
-  candidates: Candidate[];
+  @bindable candidates: Candidate[];
+
+  constructor(private ds: DonationService) {}
 
   addCandidate() {
-    const candidate = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      office: this.office,
-      _id: ''
-    };
-    this.candidates.push(candidate);
-    console.log(candidate);
+    this.ds.createCandidate(this.firstName, this.lastName, this.office);
   }
 }

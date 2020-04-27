@@ -63,6 +63,17 @@ export class DonationService {
     console.log('Total so far ' + this.total);
   }
 
+  async createCandidate(firstName: string, lastName: string, office: string) {
+    const candidate = {
+      firstName: firstName,
+      lastName: lastName,
+      office: office
+    };
+    const response = await this.httpClient.post('/api/candidates', candidate);
+    const newCandidate = await response.content;
+    this.candidates.push(newCandidate);
+  }
+
   signup(firstName: string, lastName: string, email: string, password: string) {
     //this.changeRouter(PLATFORM.moduleName('app'))
     return false;
