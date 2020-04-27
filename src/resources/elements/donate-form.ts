@@ -18,6 +18,7 @@ export class DonateForm {
     const donation = {
       amount: parseInt(this.amount),
       method: this.selectedMethod,
+      candidate: this.selectedCandidate
     };
     this.donations.push(donation);
     console.log(this.donations);
