@@ -5,11 +5,15 @@ import { DonationService } from '../services/donation-service';
 export class Login {
   email = 'marge@simpson.com';
   password = 'secret';
+  prompt = '';
 
   constructor(private ds: DonationService) {}
 
-  login(e) {
+  async login(e) {
     console.log(`Trying to log in ${this.email}`);
-    this.ds.login(this.email, this.password);
+    const success = await this.ds.login(this.email, this.password);
+    if (!success) {
+      this.prompt = "Oops! Try again...";
+    }
   }
 }
