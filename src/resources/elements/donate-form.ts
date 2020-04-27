@@ -1,26 +1,22 @@
+import { inject } from 'aurelia-framework';
 import { bindable } from 'aurelia-framework';
 import { Candidate, Donation } from '../../services/donation-types';
+import {DonationService} from "../../services/donation-service";
 
+@inject(DonationService)
 export class DonateForm {
-  amount = '0';
-  @bindable
-  donations: Donation[] = [];
   @bindable
   paymentMethods: string[];
-
   @bindable
-  candidates: Candidate[] = [];
+  candidates: Candidate[];
 
+  amount = '0';
   selectedMethod = '';
   selectedCandidate : Candidate = null;
 
+  constructor (private ds: DonationService) {}
+
   makeDonation() {
-    const donation = {
-      amount: parseInt(this.amount),
-      method: this.selectedMethod,
-      candidate: this.selectedCandidate
-    };
-    this.donations.push(donation);
-    console.log(this.donations);
+    this.ds.donate(parseInt(this.amount), this.selectedMethod, this.selectedCandidate);
   }
 }

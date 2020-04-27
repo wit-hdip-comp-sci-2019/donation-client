@@ -4,9 +4,7 @@
 
   <div class="ui stackable two column grid">
     <div class="column">
-      <donate-form donations.two-way="donations" payment-methods.bind="paymentMethods"
-                   candidates.bind="candidates">
-      </donate-form>
+      <donate-form payment-methods.bind="paymentMethods" candidates.bind="candidates"></donate-form>
     </div>
     <div class="column">
       <donation-list donations.bind="donations"></donation-list>
