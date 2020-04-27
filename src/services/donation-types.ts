@@ -9,3 +9,10 @@ export interface Donation {
   method: string;
   candidate: Candidate;
 }
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
