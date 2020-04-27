@@ -17,3 +17,10 @@ export interface User {
   email: string;
   password: string;
 }
+
+export interface RawDonation {
+  amount: number;
+  method: string;
+  candidate: string;
+  donor: string;
+}

@@ -1,7 +1,7 @@
 import { inject, Aurelia } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 import { PLATFORM } from 'aurelia-pal';
-import { Candidate, Donation, User } from './donation-types';
+import { Candidate, Donation, RawDonation, User } from './donation-types';
 import { HttpClient } from 'aurelia-http-client';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { TotalUpdate } from './messages';
@@ -20,6 +20,7 @@ export class DonationService {
     });
     this.getCandidates();
     this.getUsers();
+    this.getDonations();
   }
 
   async getCandidates() {
@@ -37,6 +38,18 @@ export class DonationService {
     });
   }
 
+  async getDonations() {
+    const response = await this.httpClient.get('/api/donations');
+    const rawDonations: RawDonation[] = await response.content;
+    rawDonations.forEach(rawDonation => {
+      const donation = {
+        amount: rawDonation.amount,
+        method : rawDonation.method,
+        candidate :this.candidates.find(candidate => rawDonation.candidate == candidate._id),
+      }
+      this.donations.push(donation);
+    });
+  }
   async donate(amount: number, method: string, candidate: Candidate) {
     const donation = {
       amount: amount,
