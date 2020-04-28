@@ -71,6 +71,7 @@ export class DonationService {
         this.httpClient.configure((configuration) => {
           configuration.withHeader('Authorization', 'bearer ' + status.token);
         });
+        localStorage.donation = JSON.stringify(response.content);
         await this.getCandidates();
         this.changeRouter(PLATFORM.moduleName('app'));
         success = status.success;
@@ -82,10 +83,23 @@ export class DonationService {
   }
 
   logout() {
+    localStorage.donation = null;
     this.httpClient.configure((configuration) => {
       configuration.withHeader('Authorization', '');
     });
     this.changeRouter(PLATFORM.moduleName('start'));
+  }
+
+  checkIsAuthenticated() {
+    let authenticated = false;
+    if (localStorage.donation !== 'null') {
+      authenticated = true;
+      this.httpClient.configure((http) => {
+        const auth = JSON.parse(localStorage.donation);
+        http.withHeader('Authorization', 'bearer ' + auth.token);
+      });
+      this.changeRouter(PLATFORM.moduleName('app'));
+    }
   }
 
   changeRouter(module: string) {
