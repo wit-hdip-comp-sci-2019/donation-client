@@ -1,4 +1,6 @@
 <template>
+  <require from="./coordinates"></require>
+
   <form submit.trigger="makeDonation()" class="ui form stacked segment">
     <h3 class='ui dividing header'> Make a Donation </h3>
     <div class="grouped inline fields">
@@ -14,6 +16,7 @@
         </div>
       </div>
     </div>
+    <coordinates location.two-way="location"></coordinates>
     <h4 class="ui dividing header"> Select Candidate </h4>
     <div class="grouped inline fields">
       <div class="field" repeat.for="candidate of candidates">
