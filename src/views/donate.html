@@ -2,15 +2,17 @@
   <require from="../resources/elements/donation-list"></require>
   <require from="../resources/elements/donate-form"></require>
   <require from="../resources/elements/total-donated"></require>
+  <require from="../resources/elements/simple-map"></require>
 
   <div class="ui stackable grid">
     <div class="seven wide column">
       <donate-form payment-methods.bind="paymentMethods" candidates.bind="candidates"></donate-form>
     </div>
     <div class="two wide column">
-      <total-donated total.bind="total"></total-donated>
+      <total-donated></total-donated>
     </div>
     <div class="seven wide column">
+      <simple-map></simple-map>
       <donation-list donations.bind="donations"></donation-list>
     </div>
   </div>
