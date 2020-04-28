@@ -1,7 +1,7 @@
 import { inject, Aurelia } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 import { PLATFORM } from 'aurelia-pal';
-import { Candidate, Donation } from './donation-types';
+import { Candidate, Donation, Location } from './donation-types';
 import { HttpClient } from 'aurelia-http-client';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { TotalUpdate } from './messages';
@@ -36,11 +36,12 @@ export class DonationService {
     this.candidates.push(newCandidate);
   }
 
-  async donate(amount: number, method: string, candidate: Candidate) {
+  async donate(amount: number, method: string, candidate: Candidate, location: Location) {
     const donation = {
       amount: amount,
       method: method,
       candidate: candidate,
+      location: location,
     };
     const response = await this.httpClient.post('/api/candidates/' + candidate._id + '/donations', donation);
     this.donations.push(donation);

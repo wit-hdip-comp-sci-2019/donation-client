@@ -5,10 +5,16 @@ export interface Candidate {
   _id: string;
 }
 
+export interface Location {
+  lat: number;
+  lng: number;
+}
+
 export interface Donation {
   amount: number;
   method: string;
   candidate: Candidate;
+  location: Location;
 }
 
 export interface User {
