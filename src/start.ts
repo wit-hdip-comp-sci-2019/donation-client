@@ -1,8 +1,12 @@
+import { inject } from 'aurelia-framework';
 import { RouterConfiguration, Router } from 'aurelia-router';
 import { PLATFORM } from 'aurelia-pal';
+import { DonationService } from './services/donation-service';
 
+@inject(DonationService)
 export class Start {
   router: Router;
+  constructor(private ds: DonationService) {}
 
   configureRouter(config: RouterConfiguration, router: Router) {
     config.map([
@@ -11,16 +15,20 @@ export class Start {
         name: 'Login',
         moduleId: PLATFORM.moduleName('views/login'),
         nav: true,
-        title: 'Login'
+        title: 'Login',
       },
       {
         route: 'signup',
         name: 'signup',
         moduleId: PLATFORM.moduleName('views/signup'),
         nav: true,
-        title: 'Signup'
-      }
+        title: 'Signup',
+      },
     ]);
     this.router = router;
+  }
+
+  attached() {
+    this.ds.checkIsAuthenticated();
   }
 }
