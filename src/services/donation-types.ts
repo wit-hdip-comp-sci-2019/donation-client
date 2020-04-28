@@ -2,7 +2,7 @@ export interface Candidate {
   firstName: string;
   lastName: string;
   office: string;
-  _id : string;
+  _id: string;
 }
 
 export interface Donation {
@@ -17,11 +17,4 @@ export interface User {
   email: string;
   password: string;
   _id: string;
-}
-
-export interface RawDonation {
-  amount: number;
-  method: string;
-  candidate: string;
-  donor: string;
 }
