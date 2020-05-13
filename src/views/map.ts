@@ -18,5 +18,6 @@ export class Map {
     };
     this.map = new LeafletMap(this.mapId, mapConfig, 'Terrain');
     this.map.showZoomControl();
+    this.map.showLayerControl();
   }
 }
