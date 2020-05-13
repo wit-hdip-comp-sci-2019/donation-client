@@ -26,6 +26,13 @@ export class App {
         moduleId: PLATFORM.moduleName('views/logout'),
         nav: true,
         title: 'Logout'
+      },
+      {
+        route: 'map',
+        name: 'map',
+        moduleId: PLATFORM.moduleName('views/map'),
+        nav: true,
+        title: 'Map'
       }
     ]);
     this.router = router;
