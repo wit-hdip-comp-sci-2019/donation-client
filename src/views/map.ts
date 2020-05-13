@@ -13,7 +13,7 @@ export class Map {
   renderDonations() {
     for (let donation of this.ds.donations) {
       const donationStr = `${donation.candidate.firstName} ${donation.candidate.lastName} €${donation.amount.toString()}`;
-      this.map.addMarker(donation.location, donationStr);
+      this.map.addMarker(donation.location, donationStr, 'Donations');
     }
   }
 
@@ -25,6 +25,7 @@ export class Map {
     };
     this.map = new LeafletMap(this.mapId, mapConfig, 'Terrain');
     this.map.showZoomControl();
+    this.map.addLayerGroup('Donations');
     this.map.showLayerControl();
     this.renderDonations();
   }
