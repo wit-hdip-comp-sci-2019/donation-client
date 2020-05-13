@@ -1,4 +1,5 @@
 {
   "debug": true,
-  "testing": true
+  "testing": true,
+  "weatherApiKey": "10d52673f466e43fcf146cdb041a1a89"
 }
